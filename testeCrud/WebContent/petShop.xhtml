@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Cadstro de Petshop</title>
+	
+	
+	<style type="text/css">
+    .ui-layout-unit-content{background-image:url('#{request.contextPath}/Imagens/cachorro2.png' );}
+</style>
+</h:head>
+<h:body>
+<h:form>  
+    <p:growl id="messages"/>
+ 
+    <p:menubar>
+    
+        <p:submenu label="Serviços Disponiveis" icon="ui-icon-arrowstop-1-s
+ ">
+         <p:menuitem value="Adestramento"  url="#" />
+         <p:menuitem value="Banho" url="#" />
+         <p:menuitem value="Consulta Veterinária" url="#" />
+         <p:menuitem value="Creché para pet's" url="#" />
+         <p:menuitem value="Emergência e serviços 24h" url="#" />
+         <p:menuitem value="Exames" url="#" />
+         <p:menuitem value="Hotelzinho" url="#" />
+         <p:menuitem value="Transporte(leva e traz)" url="#" />
+         <p:menuitem value="Tosa" url="#" />
+         
+        </p:submenu >
+ 
+    
+ 
+           <p:submenu label="Sobre o PetShop" icon="ui-icon-search
+ ">
+              <p:menuitem value="Quem somos" type="button"   update="messages" actionListener="#{buttonView.somos}"  />
+             <p:menuitem value="Política de privacidade"  type="button"  update="messages" actionListener="#{buttonView.Poli}"  />
+             <p:menuitem value="Termos de uso" type="button"   update="messages" actionListener="#{buttonView.termo}"/>
+        </p:submenu>
+
+        <p:submenu label="Info" icon="ui-icon-help">
+              <p:menuitem value="Duvidas Frequentes" type="button"   update="messages" actionListener="#{buttonView.duvidas}"   />  
+             <p:menuitem value="Fale Conosco" type="button"   update="messages" actionListener="#{buttonView.fale}"  />
+        </p:submenu>
+ 
+        <p:menuitem value="Quit" url="https://i.ytimg.com/vi/54I3b3wHFFI/sddefault.jpg" icon="ui-icon-close" />
+ 
+        <f:facet name="options">
+            <p:commandButton outcome="productDetail" value="Blog " update="messages" actionListener="#{buttonView.save}"  icon="ui-icon-star"/>
+           
+           
+            
+        </f:facet>
+    </p:menubar>
+</h:form>
+
+
+
+
+
+
+
+
+
+
+
+<p:layout style="min-width:1000px;min-height:600px;">
+    
+ 
+    <p:layoutUnit position="center">
+        <h1><center>Encontre os serviços para o seu Pet mais próximos de você e agende online</center></h1>
+        <h3><center>Diversos estabelecimentos conveniados e serviços cadastrados</center></h3>
+                 
+
+
+
+<h:form id="form">
+    <p:growl id="msgs" showDetail="true"  />
+    <p:growl id="growl" life="2000" />
+ <div align="center">
+    <h:panelGrid  columns="5" cellpadding="5">
+ 
+        
+        
+        <p:calendar  placeholder="A Qualquer Hora" id="popup" value="#{calendarView.date2}" />
+        
+     <h:outputLabel for="menu" />
+        <p:selectCheckboxMenu id="menu" value="#{checkboxView.selectedCities}" label="Em Qualquer Lugar"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+            <f:selectItems value="#{checkboxView.cities}" />
+        </p:selectCheckboxMenu>
+ 
+        
+    
+
+
+<p:tooltip />
+         
+
+
+    </h:panelGrid>
+    </div>
+    <div align="center">
+     <h3><center>Seja uma Empresa Conveniada</center></h3>  
+ <p:commandButton  value="Como Funciona " onclick="PF('bar').show()" type="button" />
+ </div>
+
+<div align="center">
+ <p>Não perca tempo, realize o cadastro já:</p>
+ 
+<p:commandButton  value="cadastrar" action="Cadastro.xhtml"  ajax="false" icon="ui-icon-disk" />
+ </div>
+ 
+ <div align="center">
+ <p>Também Disponivel Em:</p>
+ 
+ <p:graphicImage width="130px" height="54px" url="/Imagens/itunes.jpg"  />
+ <p:graphicImage  width="120px" height="54px" url="/Imagens/play.png" />
+ </div>
+    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+        <p:panelGrid id="display" columns="2" columnClasses="label,value">  <h:outputText value="Popup:" />
+            <h:outputText value="#{calendarView.date2}">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+            </h:outputText>
+        </p:panelGrid>
+    </p:dialog>
+</h:form>
+
+</p:layoutUnit>
+
+</p:layout>
+<p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
+
+<h:form>
+    <p:growl id="msgs" showDetail="true" />
+ 
+    <p:fieldset legend="Como Funciona?" style="margin-bottom:20px">
+        <h:panelGrid columns="2" cellpadding="5">
+        
+            <h:outputText
+                value="
+
+O E-Pet é um E-marketplace que gerencia, promove, fideliza, faz agendamentos e pagamentos de diversos serviços  e empresas do segmento Pet, através de uma plataforma digital disponível em aplicativo mobile e site.
+De fácil utilização, rápido e seguro. Funciona 24 horas por dia, 7 dias por semana. Não perca tempo e cadastre sua empresa para que seja conveniada também!
+
+                " />
+                <p:commandButton value="Fechar" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+        </h:panelGrid>
+    </p:fieldset>
+ 
+   
+</h:form>
+
+
+</p:notificationBar>
+
+<h:form>
+    <p:dialog header="Values" modal="true" showEffect="bounce" widgetVar="dlg" resizable="false">
+        <p:panelGrid columns="2" id="display" columnClasses="label,value">
+            <h:outputText value="Advanced:" />
+            <h:outputText value="#{selectOneMenuView.theme.displayName}" />    
+        </p:panelGrid>
+    </p:dialog>    
+</h:form>
+
+
+</h:body>
+</html>
